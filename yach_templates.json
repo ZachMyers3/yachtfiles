@@ -60,7 +60,7 @@
       },
       {
         "label": "traefik.http.routers.beets-http.rule",
-        "value": "Host(`beets.zmthree.xyz`)"
+        "value": "Host(`beets.!domain`)"
       },
       {
         "label": "traefik.http.routers.beets-http.entrypoints",
@@ -72,7 +72,7 @@
       },
       {
         "label": "traefik.http.routers.beets.rule",
-        "value": "Host(`beets.zmthree.xyz`)"
+        "value": "Host(`beets.!domain`)"
       },
       {
         "label": "traefik.http.routers.beets.entrypoints",
@@ -84,15 +84,15 @@
       },
       {
         "label": "traefik.http.routers.beets.tls.certresolver",
-        "value": "dns"
+        "value": "!traefik_cert_resolver"
       },
       {
         "label": "traefik.http.routers.beets.tls.domains[0].main",
-        "value": "!traefik_dns_domain"
+        "value": "!domain"
       },
       {
         "label": "traefik.http.routers.beets.tls.domains[0].sans",
-        "value": "!traefik_dns_sans_domain"
+        "value": "*.!domain"
       }
     ]
   }
