@@ -95,5 +95,94 @@
         "value": "*.!domain"
       }
     ]
+  },
+  {
+    "type": 1,
+    "title": "Homeassistant",
+    "name": "homeassistant",
+    "description": "Control all your devices from a single, mobile-friendly, interface. Home Assistant allows you to control all your devices without storing any of your data in the cloud.",
+    "logo": "https://www.home-assistant.io/images/home-assistant-logo.svg",
+    "image": "linuxserver/homeassistant:latest",
+    "categories": [
+      "HomeAutomation"
+    ],
+    "platform": "linux",
+    "restart_policy": "unless-stopped",
+    "volumes": [
+      {
+        "container": "/config",
+        "bind": "!config/Homeassistant"
+      }
+    ],
+    "env": [
+      {
+        "name": "PUID",
+        "label": "PUID",
+        "default": "!PUID"
+      },
+      {
+        "name": "PGID",
+        "label": "PGID",
+        "default": "!PGID"
+      }
+    ],
+    "labels": [
+      {
+        "label": "traefik.http.services.homeassistant.loadbalancer.server.scheme",
+        "value": "http"
+      },
+      {
+        "label": "traefik.http.services.homeassistant.loadbalancer.server.port",
+        "value": "8337"
+      },
+      {
+        "label": "traefik.enable",
+        "value": "true"
+      },
+      {
+        "label": "traefik.docker.network",
+        "value": "!traefik_network_name"
+      },
+      {
+        "label": "traefik.http.routers.homeassistant-http.service",
+        "value": "homeassistant"
+      },
+      {
+        "label": "traefik.http.routers.homeassistant-http.rule",
+        "value": "Host(`homeassistant.!domain`)"
+      },
+      {
+        "label": "traefik.http.routers.homeassistant-http.entrypoints",
+        "value": "!traefik_http_name"
+      },
+      {
+        "label": "traefik.http.routers.homeassistant.service",
+        "value": "homeassistant"
+      },
+      {
+        "label": "traefik.http.routers.homeassistant.rule",
+        "value": "Host(`homeassistant.!domain`)"
+      },
+      {
+        "label": "traefik.http.routers.homeassistant.entrypoints",
+        "value": "!traefik_https_name"
+      },
+      {
+        "label": "traefik.http.routers.homeassistant.tls",
+        "value": "true"
+      },
+      {
+        "label": "traefik.http.routers.homeassistant.tls.certresolver",
+        "value": "!traefik_cert_resolver"
+      },
+      {
+        "label": "traefik.http.routers.homeassistant.tls.domains[0].main",
+        "value": "!domain"
+      },
+      {
+        "label": "traefik.http.routers.homeassistant.tls.domains[0].sans",
+        "value": "*.!domain"
+      }
+    ]
   }
 ]
