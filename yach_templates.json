@@ -133,7 +133,7 @@
       },
       {
         "label": "traefik.http.services.homeassistant.loadbalancer.server.port",
-        "value": "8337"
+        "value": "8123"
       },
       {
         "label": "traefik.enable",
